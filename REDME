@@ -5,6 +5,13 @@ ROUNDCUBE 1.4.11 - HOW TO MAKE A TWO COLUMN DISPLAY
 Make the following changes, and leave only the "elastic" skin, or find a way to modify others. 
 Because some of the mods are in system files, other skins will not show properly!
 
+If you're using Roundcube 1.4.11 you can use the provided files, and put them to:
+
+* skins/elastic/templates/mail.html
+* skins/elastic/templates/message.html
+* program/js/app.min.js
+
+
 Hope I didn't forget to write something, if I did - e-mail me to hdagelic@irb.hr
 
 
@@ -65,6 +72,8 @@ Comment out this block:
 
 
 * program/js/app.js  ...  modify the following to change click/drag behaviour:
+
+NOTE: copy the file to app.min.js, after you're done.
 
 
  A) cd <your roundcube root>/program/js
