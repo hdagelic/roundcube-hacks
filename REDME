@@ -65,7 +65,7 @@ Comment out this block:
 * skins/elastic/templates/message.html  ...  around line 50:
 
 <div id="message-content">
-<div id="message-content" style="width: 80vw; word-wrap:break-word;">  <!-- IRB -->
+<div id="message-content" style="width: 90vw; word-wrap:break-word;">  <!-- IRB -->
 
 ...this prevents content dissapearing outside the right edge of the screen when reading messages.
 
