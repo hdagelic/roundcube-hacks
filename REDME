@@ -1,0 +1,96 @@
+ROUNDCUBE 1.4.11 - HOW TO MAKE A TWO COLUMN DISPLAY 
+/* . ..  *  .* ... .* .. *  **   ... . . * ... ..*/
+
+
+Make the following changes, and leave only the "elastic" skin, or find a way to modify others. 
+Because some of the mods are in system files, other skins will not show properly!
+
+Hope I didn't forget to write something, if I did - e-mail me to hdagelic@irb.hr
+
+
+
+* skins/elastic/templates/mail.html ... around line 100:
+
+Comment out this block:
+
+<!-- IRB
+
+<div id="layout-content">
+        <h2 id="aria-label-toolbar" class="voice"><roundcube:label name="arialabeltoolbar" /></h2>
+        <div class="header" role="toolbar" aria-labelledby="aria-label-toolbar">
+                <a class="button icon back-list-button" href="#back"><span class="inner"><roundcube:label name="back" /></span></a>
+                <span class="header-title"></span>
+                <roundcube:include file="includes/mail-menu.html" />
+        </div>
+        <h2 id="aria-label-mailpreviewframe" class="voice"><roundcube:label name="arialabelmailpreviewframe" /></h2>
+        <div class="iframe-wrapper">
+                <roundcube:object name="contentframe"
+                        id="messagecontframe"
+                        aria-labelledby="aria-label-mailpreviewframe"
+                        src="env:blankpage"
+                        title="arialabelmailpreviewframe"
+                />
+        </div>
+</div>
+
+-->
+
+...hides the message preview.
+
+
+
+* skins/elastic/templates/mail.html ... add to the end of file:
+
+
+<script>
+  document.getElementById('layout-list').style.maxWidth="10000px";
+  document.getElementById('layout-list').style.flexGrow="1";
+</script>
+
+
+...makes the message list stretch with the window.
+
+
+
+
+* skins/elastic/templates/message.html  ...  around line 50:
+
+<div id="message-content">
+<div id="message-content" style="width: 80vw; word-wrap:break-word;">  <!-- IRB -->
+
+...this prevents content dissapearing outside the right edge of the screen when reading messages.
+
+
+
+
+
+* program/js/app.js  ...  modify the following to change click/drag behaviour:
+
+
+ A) cd <your roundcube root>/program/js
+
+ B) Make backup:
+     cp -p app.js app.js.orig
+     cp -p app.min.js app.min.js.orig
+
+ C) vim app.js
+
+    edit the file as shown here, search for "IRB hack"  (TODO - link to file)
+
+    1) Around line 313,  add the line:
+
+      .addEventListener('click', function(o) { ref.msglist_dbl_click(o); }) // IRB hack
+
+      (just below the same line starting with .addEventListener('dblclick'))
+
+    2) Around line 2023, comment out the line:
+
+      // IRB hack
+      // this.preview_timer = setTimeout(function() { ref.msglist_get_preview(); }, preview_pane_delay);
+
+ C) Copy app.js to app.min.js (Roundcube uses that one)
+
+     cat app.js > app.min.js
+
+
+
