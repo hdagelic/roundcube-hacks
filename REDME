@@ -105,3 +105,23 @@ NOTE: copy the file to app.min.js, after you're done.
 
 
 
+"BACK" HACK
+-----------
+
+* templates/includes/menu.html
+
+...when reading messages "back" button resets the mailbox view, so people can't continue reading
+their mail, so we added a simple hack for that by modifying this file.
+
+1) Replace "Mail" and "New Message" buttons, by moving code.
+2) Add the followin javascript to the end:
+
+<script>
+if (window.location.href.search('_action=show') != '-1') document.getElementById('logo').src = './irb-back.png';
+</script>
+
+
+...this changes the image when reading an e-mail instructing the user how he can return.
+
+3) Add the following image to the root folder of the Roundcube install:
+
