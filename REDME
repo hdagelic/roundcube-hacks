@@ -125,3 +125,5 @@ if (window.location.href.search('_action=show') != '-1') document.getElementById
 
 3) Add the following image to the root folder of the Roundcube install:
 
+https://raw.githubusercontent.com/hdagelic/roundcube-hacks/main/irb-back.png
+
